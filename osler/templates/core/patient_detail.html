@@ -1,5 +1,7 @@
 {% extends "core/base.html" %}
 
+{% load static %}
+
 {% block title %}
 Patient Details: {{ patient.last_name }}, {{ patient.first_name }} {{ patient.middle_name }}
 {% endblock %}
@@ -95,6 +97,8 @@ Patient Details: {{ patient.last_name }}, {{ patient.first_name }} {{ patient.mi
 {% endblock %}
 
 {% block content %}
+
+<div id="root"> </div>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
@@ -376,5 +380,11 @@ Patient Details: {{ patient.last_name }}, {{ patient.first_name }} {{ patient.mi
       </div>
   </div>
 {% endif %}
+
+{% endblock %}
+
+{% block extra_js %}
+
+<script id="SPECIAL"  data-info="{{ patient.id }}" src="{% static 'js/patient_detail.bundle.js' %}"></script>
 
 {% endblock %}
