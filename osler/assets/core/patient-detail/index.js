@@ -5,7 +5,9 @@ import ReactDOM from 'react-dom';
 import PatientDetail from './PatientDetail';
 
 
-ReactDOM.render(
-    <PatientDetail />,
-    document.getElementById('root')
-);
+export function render(props) {
+    ReactDOM.render(	    
+        <PatientDetail {...props}/>,	        
+        document.getElementById('root')	        
+    ); 	    
+}

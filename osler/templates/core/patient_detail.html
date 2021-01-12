@@ -385,6 +385,11 @@ Patient Details: {{ patient.last_name }}, {{ patient.first_name }} {{ patient.mi
 
 {% block extra_js %}
 
-<script id="SPECIAL"  data-info="{{ patient.id }}" src="{% static 'js/patient_detail.bundle.js' %}"></script>
+<script src="{% static 'js/patient_detail.bundle.js' %}"></script>
+<script>
+  patient_detail.render({
+    'pt_pk': {{ patient.id }},
+  })
+</script>
 
 {% endblock %}
