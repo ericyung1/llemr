@@ -29,9 +29,35 @@ function PatientDetail(props) {
       {loading ? (
         <p>Loading Please wait...</p>
       ) : (
-          <div>
-          <p>REACT STUFF</p>
-          <p>Last Name: {data["last_name"]}</p>
+          <div class="container">
+            <h3>Demographic Information</h3>
+            <div class="container col-md-4">
+              <p>
+                <strong>Language: </strong> {data["languages"][0]}
+              </p>
+              <p>
+                <strong>DOB: </strong> {data["date_of_birth"]}
+              </p>
+              <p>
+                <strong>Email: </strong> {data["email"] || "Not provided"}
+              </p>
+            </div>
+            <div class="container col-md-4">
+              <p>
+                <strong>Address: </strong>
+              </p>
+              <p>
+                {data["address"]}
+              </p>
+              <p>
+                {data["city"]}, {data["state"]}
+              </p>
+            </div>
+            <div class="container col-md-4">
+              <p>
+                <strong>Phone: </strong> {data["phone"]}
+              </p>
+            </div>
           </div>
       )}
     </div>
