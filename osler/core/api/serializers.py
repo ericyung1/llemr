@@ -23,7 +23,7 @@ class CaseManagerSerializer(serializers.ModelSerializer):
 class PatientSerializer(serializers.ModelSerializer):
     class Meta(object):
         model = models.Patient
-        exclude = ['case_managers']
+        exclude = []
 
     # history = HistorySerializer()
     latest_workup = WorkupSerializer()
@@ -32,12 +32,24 @@ class PatientSerializer(serializers.ModelSerializer):
     name = serializers.StringRelatedField(read_only=True)
     pk = serializers.StringRelatedField(read_only=True)
     status = serializers.StringRelatedField(read_only=True)
-    #case_managers = CaseManagerSerializer(many=True)
+    case_managers = CaseManagerSerializer()
 
     # Put urls as model properties because unable to do:
     detail_url = serializers.StringRelatedField(read_only=True)
     update_url = serializers.StringRelatedField(read_only=True)
     activate_url = serializers.StringRelatedField(read_only=True)
+    new_note_url = serializers.StringRelatedField(read_only=True)
+    new_referral_url = serializers.StringRelatedField(read_only=True)
+    make_appointment_url = serializers.StringRelatedField(read_only=True)
+    give_vaccine_url = serializers.StringRelatedField(read_only=True)
+    upload_document_url = serializers.StringRelatedField(read_only=True)
+    view_labs_url = serializers.StringRelatedField(read_only=True)
+    log_followup_url = serializers.StringRelatedField(read_only=True)
+    new_ai_url = serializers.StringRelatedField(read_only=True)
+
+    actionitem_status = serializers.StringRelatedField(read_only=True)
+    pending_workup_set = serializers.StringRelatedField(read_only=True,many=True)
+    case_managers = CaseManagerSerializer()
 
     def __init__(self, *args, **kwargs):
         super(PatientSerializer, self).__init__(*args, **kwargs)

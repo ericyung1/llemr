@@ -6,7 +6,6 @@ from django.views.generic import DetailView
 from . import models
 from . import views
 
-app_name = 'labs'
 urlpatterns = [
     re_path(r'^all_list/(?P<pt_id>[0-9]+)/$',
         views.LabListView.as_view(),

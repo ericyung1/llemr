@@ -401,6 +401,30 @@ class Patient(Person):
     def activate_url(self):
         return reverse('core:patient-activate-home', args=(self.pk,))
 
+    def new_note_url(self):
+        return reverse('new-note-dispatch', args=(self.pk,))
+    
+    def new_referral_url(self):
+        return reverse('select-referral-type', args=(self.pk,))
+
+    def give_vaccine_url(self):
+        return reverse('select-vaccine-series', args=(self.pk,))
+
+    def upload_document_url(self):
+        return reverse('core:new-document', args=(self.pk,))
+    
+    def view_labs_url(self):
+        return reverse('all-labs-table', args=(self.pk,))
+
+    def make_appointment_url(self):
+        return reverse('appointment-new')+"?pt_id="+str(self.pk)
+
+    def log_followup_url(self):
+        return reverse('select-referral', args=(self.pk,))
+
+    def new_ai_url(self):
+        return reverse('core:new-action-item', args=(self.pk,))
+
     @classmethod
     def group_can_activate(cls, group):
         """takes a group and checks if it has activate permission to this object."""
