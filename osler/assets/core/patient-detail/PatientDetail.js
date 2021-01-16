@@ -156,7 +156,7 @@ function PatientDetail(props) {
         </div>
         <div class="container">
           <div class="col-md-6">
-            <h3>Submitted Notes ( patient.notes | length  Total)</h3>
+            <h3>Submitted Notes ({data["notes"].length}  Total)</h3>
           </div>
         </div>
       </div>
