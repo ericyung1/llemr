@@ -26,6 +26,7 @@ function PatientDetail(props) {
       {loading ? (
         <p>Loading Please wait...</p>
       ) : (
+      <div>
         <div className="jumbotron">
           <div className="container">
             <div class="col-lg-5 col-lg-offset-1 col-sm-6">
@@ -116,8 +117,51 @@ function PatientDetail(props) {
             </div>
           </div>
         </div>
-      )}
+        <div class="container">
+          <h3>&nbsp;&nbsp;Demographic Information</h3>
+          <div class="container col-md-4">
+            <p><strong>&nbsp;&nbsp;Language:</strong>  {data["languages"].join(", ")} </p>
+            <p><strong>&nbsp;&nbsp;DOB:</strong> {data["date_of_birth"]}</p>
+            <p><strong>&nbsp;&nbsp;Email:</strong> {data["email"] || "Not Provided"}</p>
+          </div>
+          <div class="container col-md-4">
+            <p>
+              <strong>Address:</strong><br />
+              {data["address"]} <br />
+              {data["city"]}, {data["state"]} {data["zip_code"]}
+            </p>
+          </div>
+          <div class="container col-md-4">
+            <table class="table table-condensed">
+              <tr>
+                <th>Contact</th>
+                <th>Phone Number</th>
+              </tr>
+              {/* should redo this to make it cleaner later x[0] is phone number x[1] is name ex "Mobile" */}
+              {data["all_phones"].map((x,i) => 
+               x[0]  && <tr><td>{x[1] != "" ? x[1] : "Primary"}</td><td>{x[0]}</td></tr>
+              )}
+            </table>
+          </div>
+        </div>
+        <div class="container">
+          <div class="col-md-8 col-md-offset-2">
+            % if patient.demographics %
+            <a href="{% url 'demographics-detail' patient.demographics.id %}" class="btn btn-default" role="button">See Patient Survey Data</a>
+            % else %
+            <div class="alert alert-danger" role="alert">
+              No survey data exists for this patient. Please <a class="alert-link" href="{% url 'demographics-create' patient.id %}">click here <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a> to add it.</div>
+            % endif %
+          </div>
+        </div>
+        <div class="container">
+          <div class="col-md-6">
+            <h3>Submitted Notes ( patient.notes | length  Total)</h3>
+          </div>
+        </div>
       </div>
+      )}
+    </div>
   );
 
 }

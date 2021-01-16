@@ -32,7 +32,6 @@ class PatientSerializer(serializers.ModelSerializer):
     name = serializers.StringRelatedField(read_only=True)
     pk = serializers.StringRelatedField(read_only=True)
     status = serializers.StringRelatedField(read_only=True)
-    case_managers = CaseManagerSerializer()
 
     # Put urls as model properties because unable to do:
     detail_url = serializers.StringRelatedField(read_only=True)
@@ -47,9 +46,12 @@ class PatientSerializer(serializers.ModelSerializer):
     log_followup_url = serializers.StringRelatedField(read_only=True)
     new_ai_url = serializers.StringRelatedField(read_only=True)
 
+    all_phones = serializers.ListField(child=serializers.ListField(child=serializers.CharField()))
+    notes = serializers.ListField(child=serializers.CharField())
+
     actionitem_status = serializers.StringRelatedField(read_only=True)
     pending_workup_set = serializers.StringRelatedField(read_only=True,many=True)
-    case_managers = CaseManagerSerializer()
+    case_managers = serializers.StringRelatedField(many=True)
 
     def __init__(self, *args, **kwargs):
         super(PatientSerializer, self).__init__(*args, **kwargs)
