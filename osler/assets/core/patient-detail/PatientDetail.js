@@ -4,14 +4,14 @@ import React, { useState, useEffect } from 'react';
 function PatientDetail(props) {
   
   const [loading, setLoading] = useState(true)
-  const [data, setData] = useState({data: null, demographics: null})
+  const [data, setData] = useState([])
 
   useEffect(() => {
     const patientUrl = "/api/patient/" + props.pt_pk
     const demographicUrl = "/api/demographic/" + props.pt_pk
     async function getData() {
-      const [respData, respDemographic] = await Promise.all([axios(patientUrl), axios(demographicUrl)])
-      setData({data: respData, demographics: respDemographic})
+      const response = await axios(patientUrl)
+      setData(response.data)
       setLoading(false)
     }
     if (loading) {
@@ -144,12 +144,12 @@ function PatientDetail(props) {
         </div>
         <div class="container">
           <div class="col-md-8 col-md-offset-2">
-            % if patient.demographics %
+            {data["demographics"] ? 
             <a href="{% url 'demographics-detail' patient.demographics.id %}" class="btn btn-default" role="button">See Patient Survey Data</a>
-            % else %
+            :
             <div class="alert alert-danger" role="alert">
-              No survey data exists for this patient. Please <a class="alert-link" href="{% url 'demographics-create' patient.id %}">click here <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a> to add it.</div>
-            % endif %
+              No survey data exists for this patient. Please <a class="alert-link" href={data["demographics_create_url"]}>click here <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a> to add it.</div>
+            }
           </div>
         </div>
         <div class="container">

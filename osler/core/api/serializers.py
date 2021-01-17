@@ -46,6 +46,7 @@ class PatientSerializer(serializers.ModelSerializer):
     view_labs_url = serializers.StringRelatedField(read_only=True)
     log_followup_url = serializers.StringRelatedField(read_only=True)
     new_ai_url = serializers.StringRelatedField(read_only=True)
+    demographics_create_url = serializers.StringRelatedField(read_only=True)
 
     all_phones = serializers.ListField(child=serializers.ListField(child=serializers.CharField()))
     notes = serializers.ListField(child=serializers.CharField())

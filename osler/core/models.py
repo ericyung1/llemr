@@ -425,6 +425,9 @@ class Patient(Person):
     def new_ai_url(self):
         return reverse('core:new-action-item', args=(self.pk,))
 
+    def demographics_create_url(self):
+        return reverse('demographics-create', args=(self.pk,))
+
     @classmethod
     def group_can_activate(cls, group):
         """takes a group and checks if it has activate permission to this object."""
