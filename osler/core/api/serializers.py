@@ -3,6 +3,7 @@ from osler.core import models
 from osler.workup.api.serializers import WorkupSerializer
 from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
+from osler.demographics.api.serializers import DemographicsSerializer
 
 class LastHistorySerializer(serializers.Serializer):
     history_date = serializers.DateTimeField()
@@ -52,6 +53,8 @@ class PatientSerializer(serializers.ModelSerializer):
     actionitem_status = serializers.StringRelatedField(read_only=True)
     pending_workup_set = serializers.StringRelatedField(read_only=True,many=True)
     case_managers = serializers.StringRelatedField(many=True)
+
+    demographics = DemographicsSerializer()
 
     def __init__(self, *args, **kwargs):
         super(PatientSerializer, self).__init__(*args, **kwargs)

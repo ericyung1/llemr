@@ -4,17 +4,15 @@ import React, { useState, useEffect } from 'react';
 function PatientDetail(props) {
   
   const [loading, setLoading] = useState(true)
-  const [data, setData] = useState([])
+  const [data, setData] = useState({data: null, demographics: null})
 
   useEffect(() => {
-    let apiUrl = "/api/patient/" + props.pt_pk
+    const patientUrl = "/api/patient/" + props.pt_pk
+    const demographicUrl = "/api/demographic/" + props.pt_pk
     async function getData() {
-      await axios
-        .get(apiUrl)  
-        .then((response) => {
-          setData(response.data);
-          setLoading(false);
-        });
+      const [respData, respDemographic] = await Promise.all([axios(patientUrl), axios(demographicUrl)])
+      setData({data: respData, demographics: respDemographic})
+      setLoading(false)
     }
     if (loading) {
       getData();
