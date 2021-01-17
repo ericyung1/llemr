@@ -1,11 +1,12 @@
 from rest_framework import serializers
 from osler.workup import models
+from osler.core.api.common import DynamicFieldsModelSerializer
 
 
-class WorkupSerializer(serializers.ModelSerializer):
+class WorkupSerializer(DynamicFieldsModelSerializer):
     class Meta(object):
         model = models.Workup
-        fields = ['chief_complaint', 'pk', 'url', 'signer', 'written_datetime']
+        exclude = []
 
-    url = serializers.StringRelatedField(read_only=True)
+    detail_url = serializers.StringRelatedField(read_only=True)
     signer = serializers.StringRelatedField(read_only=True)
