@@ -1,9 +1,9 @@
 from rest_framework import serializers
 from osler.core.api.common import DynamicFieldsModelSerializer
 
-from osler.demographics import models
+from osler.labs import models
 
-class DemographicsSerializer(DynamicFieldsModelSerializer):
+class LabSerializer(DynamicFieldsModelSerializer):
     class Meta(object):
-        model = models.Demographics
+        model = models.Lab
         exclude = []
