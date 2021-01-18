@@ -4,6 +4,7 @@ module.exports = {
   entry: {
     all_patients: "./osler/assets/core/all-patients/index.js",
     patient_detail: "./osler/assets/core/patient-detail/index.js"
+    nav_bar: "./osler/assets/core/nav-bar/index.js",
   },
   output: {
     filename: "[name].bundle.js", // output bundle file name
