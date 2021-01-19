@@ -4,7 +4,7 @@ from osler.workup.api.serializers import WorkupSerializer
 from osler.core.api.common import DynamicFieldsModelSerializer
 from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
-from osler.demographics.api.serializers import DemographicsSerializer
+# from osler.demographics.api.serializers import DemographicsSerializer
 
 class LastHistorySerializer(serializers.Serializer):
     history_date = serializers.DateTimeField()
@@ -55,7 +55,7 @@ class PatientSerializer(DynamicFieldsModelSerializer):
 
     pending_workup_set = serializers.StringRelatedField(read_only=True,many=True)
 
-    demographics = DemographicsSerializer()
+    # demographics = DemographicsSerializer()
 
     def create(self, validated_data):
         languages =  validated_data.pop('languages')
