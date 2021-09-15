@@ -21,6 +21,8 @@ Patient Details: {{ patient.last_name }}, {{ patient.first_name }} {{ patient.mi
     'displayAppointments': {{ settings.OSLER_DISPLAY_APPOINTMENTS|yesno:'true,false' }},
     'displayVaccine': {{ settings.OSLER_DISPLAY_VACCINE|yesno:'true,false' }},
     'displayFollowup': {{ settings.OSLER_DISPLAY_FOLLOWUP|yesno:'true,false' }},
+    // 'upload_document_url': {{ patient.upload_document_url }},
+    // ^ above is just proof of concept that the urls could be passed this way instead of via the api
   })
 </script>
 
